@@ -1,0 +1,15 @@
+#app {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.router-link-exact-active {
+    font-weight: bold;
+}
+
+.btn-success {
+    background-color: #FF9024;
+}
+
+.badge-success {
+    background-color: #FF9024;
+}
