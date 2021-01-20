@@ -4,13 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import tas.tes.tis.model.Keranjang;
 import tas.tes.tis.repository.KeranjangRepo;
@@ -40,5 +34,18 @@ public class KeranjangController {
     @DeleteMapping("/keranjang/{id}")
     public void deleteKeranjang(@PathVariable Long id) {
         keranjangRepo.deleteById(id);
+    }
+
+    @PutMapping("/keranjang/{id}")
+    public Keranjang replace(@RequestBody Keranjang newKeranjang, @PathVariable Long id) {
+        return keranjangRepo.findById(id).map(keranjang -> {
+            keranjang.setJumlahPesanan(newKeranjang.getJumlahPesanan());
+            keranjang.setKeterangan(newKeranjang.getKeterangan());
+            keranjang.setProduct(newKeranjang.getProduct());
+            return keranjangRepo.save(keranjang);
+        }).orElseGet(() -> {
+            newKeranjang.setId(id);
+            return keranjangRepo.save(newKeranjang);
+        });
     }
 }
