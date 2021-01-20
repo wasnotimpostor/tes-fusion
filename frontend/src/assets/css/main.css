@@ -7,9 +7,33 @@
 }
 
 .btn-success {
-    background-color: #FF9024;
+    background-color: #f29203;
 }
 
 .badge-success {
-    background-color: #FF9024;
+    background-color: #f29203;
+}
+
+.card-product {
+    border-radius: 15px;
+}
+
+.card-img-top {
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    padding: 0;
+}
+
+.breadcrumb-item.active {
+    font-weight: bold;
+    color: black;
+}
+
+
+.img-fluid {
+    border-radius: 15px;
 }

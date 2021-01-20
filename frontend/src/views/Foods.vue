@@ -1,7 +1,5 @@
-<template>
-  <div>
-    <Navbar />
-    <div class="container">
+
+    <!-- <div class="container">
       <div class="row mt-4">
         <div class="col">
           <h2>
@@ -19,13 +17,13 @@
               v-model="search"
               type="text"
               class="form-control"
-              placeholder="Cari Makanan Kesukaan Anda .."
+              placeholder="Cari makanan..."
               aria-label="Cari"
               aria-describedby="basic-addon1"
               @keyup="searchFood"
-            />
+            /> -->
 
-            <div class="input-group-prepend">
+            <!-- <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1">
                 <b-icon-search></b-icon-search>
               </span>
@@ -39,45 +37,44 @@
           <CardProduct :product="product" />
         </div>
       </div>
-    </div>
-  </div>
-</template>
+    </div> -->
+
 
 <script>
 // @ is an alias to /src
-import Navbar from "@/components/Navbar.vue";
-import CardProduct from "@/components/CardProduct.vue";
-import axios from "axios";
-export default {
-  name: "Foods",
-  components: {
-    Navbar,
-    CardProduct,
-  },
-  data() {
-    return {
-      products: [],
-      search: '',
-    };
-  },
-  methods: {
-    setProducts(data) {
-      this.products = data;
-    },
-    searchFood() {
-      axios
-      .get("http://192.168.1.33:8087/tis/products?q="+this.search)
-      .then((response) => this.setProducts(response.data))
-      .catch((error) => console.log(error));
-    }
-  },
-  mounted() {
-    axios
-      .get("http://192.168.1.33:8087/tis/products")
-      .then((response) => this.setProducts(response.data))
-      .catch((error) => console.log(error));
-  },
-};
+// import Navbar from "@/components/Navbar.vue";
+// import CardProduct from "@/components/CardProduct.vue";
+// import axios from "axios";
+// export default {
+//   name: "Foods",
+//   components: {
+//     // Navbar,
+//     CardProduct,
+//   },
+//   data() {
+//     return {
+//       products: [],
+//       search: '',
+//     };
+//   },
+//   methods: {
+//     setProducts(data) {
+//       this.products = data;
+//     },
+//     searchFood() {
+//       axios
+//       .get("http://192.168.1.33:8087/tis/products?q="+this.search)
+//       .then((response) => this.setProducts(response.data))
+//       .catch((error) => console.log(error));
+//     }
+//   },
+//   mounted() {
+//     axios
+//       .get("http://192.168.1.33:8087/tis/products")
+//       .then((response) => this.setProducts(response.data))
+//       .catch((error) => console.log(error));
+//   },
+// };
 </script>
 <style>
 </style>
