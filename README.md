@@ -43,5 +43,7 @@ Tabel pesanan :
     private Long keranjang;
 ```
 Menggunakan @ManyToOne untuk relasinya
+
 ID generate IDENTITY
+
 Saat ini belum membuat fitur register &amp; login
