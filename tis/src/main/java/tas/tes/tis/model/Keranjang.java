@@ -20,12 +20,6 @@ public class Keranjang {
 
     private String keterangan;
 
-    private Long product;
-
-    @ManyToOne
-    @JoinColumn(name = "product", referencedColumnName = "id", insertable = false, updatable = false)
-    private Products products;
-
     public Long getId() {
         return id;
     }
@@ -48,21 +42,5 @@ public class Keranjang {
 
     public void setKeterangan(String keterangan) {
         this.keterangan = keterangan;
-    }
-
-    public Long getProduct() {
-        return product;
-    }
-
-    public void setProduct(Long product) {
-        this.product = product;
-    }
-
-    public Products getProducts() {
-        return products;
-    }
-
-    public void setProducts(Products products) {
-        this.products = products;
     }
 }

@@ -11,6 +11,7 @@ import tas.tes.tis.repository.KeranjangRepo;
 
 @RestController
 @RequestMapping("/tis")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class KeranjangController {
     
     @Autowired
@@ -21,7 +22,9 @@ public class KeranjangController {
         return keranjangRepo.findAll();
     }
 
-    @PostMapping("/keranjang/add")
+    @RequestMapping(value = "/keranjang/add",
+            produces = "application/json",
+            method=RequestMethod.POST)
     public Keranjang addKeranjang(@RequestBody Keranjang keranjang) {
         return keranjangRepo.save(keranjang);
     }
@@ -36,12 +39,16 @@ public class KeranjangController {
         keranjangRepo.deleteById(id);
     }
 
+    @DeleteMapping("/keranjang")
+    public void deleteAllKeranjang() {
+        keranjangRepo.deleteAll();
+    }
+
     @PutMapping("/keranjang/{id}")
     public Keranjang replace(@RequestBody Keranjang newKeranjang, @PathVariable Long id) {
         return keranjangRepo.findById(id).map(keranjang -> {
             keranjang.setJumlahPesanan(newKeranjang.getJumlahPesanan());
             keranjang.setKeterangan(newKeranjang.getKeterangan());
-            keranjang.setProduct(newKeranjang.getProduct());
             return keranjangRepo.save(keranjang);
         }).orElseGet(() -> {
             newKeranjang.setId(id);

@@ -21,7 +21,9 @@ public class ProductsController {
         return productsRepo.findAll();
     }
 
-    @PostMapping("/products/add")
+    @RequestMapping(value = "/products/add",
+            produces = "application/json",
+            method=RequestMethod.POST)
     public Products addProducts(@RequestBody Products products) {
         return productsRepo.save(products);
     }
