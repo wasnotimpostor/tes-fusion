@@ -28,8 +28,6 @@ Tabel keranjang :
     private Integer jumlahPesanan;
 
     private String keterangan;
-
-    private Long product;
 ```
 
 Tabel pesanan :
