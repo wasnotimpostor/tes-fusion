@@ -28,8 +28,6 @@ Tabel keranjang :
     private Integer jumlahPesanan;
 
     private String keterangan;
-
-    private Long product;
 ```
 
 Tabel pesanan :
@@ -39,9 +37,30 @@ Tabel pesanan :
     private String nama;
 
     private Integer noMeja;
-
-    private Long keranjang;
 ```
+
+CORS Config agar resource bisa digunakan front end :
+
+```java
+@Configuration
+@EnableWebMvc
+public class CorsConfiguration implements WebMvcConfigurer
+{
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedMethods("GET", "POST", "PUT", "DELETE");
+    }
+}
+```
+
+Request mapping API agar bisa post di front end :
+```java
+    @RequestMapping(value = "/keranjang/add",
+            produces = "application/json",
+            method=RequestMethod.POST)
+```
+
 Menggunakan @ManyToOne untuk relasinya
 
 ID generate IDENTITY
