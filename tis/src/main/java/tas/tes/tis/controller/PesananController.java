@@ -21,7 +21,9 @@ public class PesananController {
         return pesananRepo.findAll();
     }
 
-    @PostMapping("/pesanan/add")
+    @RequestMapping(value = "/pesanan/add",
+            produces = "application/json",
+            method=RequestMethod.POST)
     public Pesanan addPesanan(@RequestBody Pesanan pesanan) {
         return pesananRepo.save(pesanan);
     }

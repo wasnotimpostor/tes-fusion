@@ -17,34 +17,36 @@ public class KeranjangController {
     @Autowired
     KeranjangRepo keranjangRepo;
 
-    @GetMapping("/keranjang")
+    @RequestMapping(value = "/keranjangs",
+            produces = "application/json",
+            method=RequestMethod.GET)
     public List<Keranjang> getAllKeranjang() {
         return keranjangRepo.findAll();
     }
 
-    @RequestMapping(value = "/keranjang/add",
+    @RequestMapping(value = "/keranjangs/add",
             produces = "application/json",
             method=RequestMethod.POST)
     public Keranjang addKeranjang(@RequestBody Keranjang keranjang) {
         return keranjangRepo.save(keranjang);
     }
 
-    @GetMapping("/keranjang/{id}")
+    @GetMapping("/keranjangs/{id}")
     public Optional<Keranjang> getKeranjang(@PathVariable Long id) {
         return keranjangRepo.findById(id);
     }
 
-    @DeleteMapping("/keranjang/{id}")
+    @DeleteMapping("/keranjangs/{id}")
     public void deleteKeranjang(@PathVariable Long id) {
         keranjangRepo.deleteById(id);
     }
 
-    @DeleteMapping("/keranjang")
+    @DeleteMapping("/keranjangs")
     public void deleteAllKeranjang() {
         keranjangRepo.deleteAll();
     }
 
-    @PutMapping("/keranjang/{id}")
+    @PutMapping("/keranjangs/{id}")
     public Keranjang replace(@RequestBody Keranjang newKeranjang, @PathVariable Long id) {
         return keranjangRepo.findById(id).map(keranjang -> {
             keranjang.setJumlahPesanan(newKeranjang.getJumlahPesanan());
