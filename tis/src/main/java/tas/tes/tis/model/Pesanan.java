@@ -7,10 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "pesanan")
-public class Pesanan {
+public class Pesanan implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +26,10 @@ public class Pesanan {
     @ManyToOne
     @JoinColumn(name = "keranjang", referencedColumnName = "id", insertable = false, updatable = false)
     private Keranjang keranjangs;
+
+    @ManyToOne
+    @JoinColumn(name = "noMeja", referencedColumnName = "id", insertable = false, updatable = false)
+    private Meja meja;
 
     public Long getId() {
         return id;
@@ -42,14 +47,6 @@ public class Pesanan {
         this.nama = nama;
     }
 
-    public Integer getNoMeja() {
-        return noMeja;
-    }
-
-    public void setNoMeja(Integer noMeja) {
-        this.noMeja = noMeja;
-    }
-
     public Long getKeranjang() {
         return keranjang;
     }
@@ -64,5 +61,21 @@ public class Pesanan {
 
     public void setKeranjangs(Keranjang keranjangs) {
         this.keranjangs = keranjangs;
+    }
+
+    public Integer getNoMeja() {
+        return noMeja;
+    }
+
+    public void setNoMeja(Integer noMeja) {
+        this.noMeja = noMeja;
+    }
+
+    public Meja getMeja() {
+        return meja;
+    }
+
+    public void setMeja(Meja meja) {
+        this.meja = meja;
     }
 }
