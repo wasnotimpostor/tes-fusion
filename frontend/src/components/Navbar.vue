@@ -29,7 +29,7 @@
         <li class="nav-item">
          <router-link class="nav-link" to="/keranjang">Keranjang
          <b-icon-bag></b-icon-bag>
-             <span class="badge badge-success ml-2">0</span>
+             <span class="badge badge-success ml-2">{{ jumlahPesanan.length }}</span>
          </router-link>
         </li>
       </ul>
@@ -38,13 +38,28 @@
       </div>
 </nav>
 </template>
-
 <script>
+import axios from "axios";
 export default {
-    name : 'Navbar'
-}
+  name: "Navbar",
+  data() {
+    return {
+      jumlahPesanan: [],
+    };
+  },
+  props: ["updateKeranjang"],
+  methods: {
+    setJumlah(data) {
+      this.jumlahPesanan = data;
+    },
+  },
+  mounted() {
+    axios
+      .get("http://192.168.1.33:8087/tis/keranjangs")
+      .then((response) => this.setJumlah(response.data))
+      .catch((error) => console.log(error));
+  },
+};
 </script>
-
 <style>
-
 </style>

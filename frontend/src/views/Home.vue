@@ -28,7 +28,6 @@
 import Hero from "@/components/Hero.vue";
 import CardProduct from "../components/CardProduct";
 import axios from "axios";
-
 export default {
   name: "Home",
   components: {

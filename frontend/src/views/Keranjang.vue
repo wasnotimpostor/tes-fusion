@@ -1,3 +1,4 @@
+
 <template>
   <div class="keranjang">
     <!-- <Navbar :updateKeranjang="keranjangs" /> -->
@@ -10,9 +11,9 @@
               <li class="breadcrumb-item">
                 <router-link to="/" class="text-dark">Home</router-link>
               </li>
-              <li class="breadcrumb-item">
+              <!-- <li class="breadcrumb-item">
                 <router-link to="/foods" class="text-dark">Foods</router-link>
-              </li>
+              </li> -->
               <li class="breadcrumb-item active" aria-current="page">Keranjang</li>
             </ol>
           </nav>
@@ -53,10 +54,10 @@
                     <strong>{{ keranjang.products.nama }}</strong>
                   </td>
                   <td>{{ keranjang.keterangan ? keranjang.keterangan : "-" }}</td>
-                  <td>{{ keranjang.jumlah_pemesanan }}</td>
+                  <td>{{ keranjang.jumlahPesanan }}</td>
                   <td align="right">Rp. {{ keranjang.products.harga }}</td>
                   <td align="right">
-                    <strong>Rp. {{ keranjang.products.harga*keranjang.jumlah_pemesanan }}</strong>
+                    <strong>Rp. {{ keranjang.products.harga*keranjang.jumlahPesanan }}</strong>
                   </td>
                   <td align="center" class="text-danger">
                     <b-icon-trash @click="hapusKeranjang(keranjang.id)"></b-icon-trash>
@@ -121,7 +122,7 @@ export default {
     },
     hapusKeranjang(id) {
       axios
-        .delete("http://192.168.1.33:8087/tis/keranjang/" + id)
+        .delete("http://192.168.1.33:8087/tis/keranjangs/" + id)
         .then(() => {
           this.$toast.error("Sukses Hapus Keranjang", {
             type: "error",
@@ -131,7 +132,7 @@ export default {
           });
           // Update Data keranjang
           axios
-            .get("http://192.168.1.33:8087/tis/keranjang")
+            .get("http://192.168.1.33:8087/tis/keranjangs")
             .then((response) => this.setKeranjangs(response.data))
             .catch((error) => console.log(error));
         })
@@ -146,7 +147,7 @@ export default {
             // Hapus Semua Keranjang 
             this.keranjangs.map(function (item) {
               return axios
-                .delete("http://192.168.1.33:8087/tis/keranjang/" + item.id)
+                .delete("http://192.168.1.33:8087/tis/keranjangs/" + item.id)
                 .catch((error) => console.log(error));
             });
             this.$router.push({ path: "/pesanan-sukses" });
@@ -170,14 +171,14 @@ export default {
   },
   mounted() {
     axios
-      .get("http://192.168.1.33:8087/tis/keranjang")
+      .get("http://192.168.1.33:8087/tis/keranjangs")
       .then((response) => this.setKeranjangs(response.data))
       .catch((error) => console.log(error));
   },
   computed: {
     totalHarga() {
       return this.keranjangs.reduce(function (items, data) {
-        return items + data.products.harga * data.jumlah_pemesanan;
+        return items + data.products.harga * data.jumlahPesanan;
       }, 0);
     },
   },

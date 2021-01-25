@@ -1,4 +1,3 @@
-
 <template>
   <div class="food-detail">
     <!-- <Navbar /> -->
@@ -25,7 +24,7 @@
       <div class="row mt-3">
         <div class="col-md-6">
           <img
-            :src="'../assets/image/' + product.gambar"
+            :src="'../assets/images/' + product.gambar"
             class="img-fluid shadow"
           />
         </div>
@@ -40,11 +39,11 @@
           </h4>
           <form class="mt-4" v-on:submit.prevent>
             <div class="form-group">
-              <label for="jumlah_pemesanan">Jumlah Pesan</label>
+              <label for="jumlahPesanan">Jumlah Pesan</label>
               <input
                 type="number"
                 class="form-control"
-                v-model="pesan.jumlah_pemesanan"
+                v-model="pesan.jumlahPesanan"
               />
             </div>
             <div class="form-group">
@@ -86,10 +85,10 @@ export default {
       this.product = data;
     },
     pemesanan() {
-      if (this.pesan.jumlah_pemesanan) {
+      if (this.pesan.jumlahPesanan) {
         this.pesan.products = this.product;
         axios
-          .post("http://192.168.1.33:8087/tis/keranjang/", this.pesan)
+          .post("http://192.168.1.33:8087/tis/keranjangs/add", this.pesan)
           .then(() => {
             this.$router.push({ path: "/keranjang" });
             this.$toast.success("Sukses Masuk Keranjang", {
@@ -118,4 +117,3 @@ export default {
   },
 };
 </script>
-

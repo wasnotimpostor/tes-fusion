@@ -17,7 +17,7 @@
           </div>
       </div>
       <div class="col-md-6">
-          <img src="../assets/image/hero.png" width="100%" />
+          <img src="../assets/images/hero.png" width="100%" />
       </div>
   </div>
   </div>
@@ -30,5 +30,4 @@ export default {
 </script>
 
 <style>
-
 </style>
