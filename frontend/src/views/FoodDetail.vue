@@ -87,6 +87,7 @@ export default {
     pemesanan() {
       if (this.pesan.jumlahPesanan) {
         this.pesan.products = this.product;
+        this.pesan.id_product = this.product.id
         axios
           .post("http://192.168.1.33:8087/tis/keranjangs/add", this.pesan)
           .then(() => {
